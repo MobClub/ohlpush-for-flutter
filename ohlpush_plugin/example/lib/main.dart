@@ -211,7 +211,7 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('MobPushPlugin Demo'),
+          title: const Text('OHLPushPlugin Demo'),
         ),
         body: Column(
           children: <Widget>[

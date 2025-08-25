@@ -37,6 +37,7 @@ android {
 
     defaultConfig {
         applicationId "com.ohaola.sdk.push.demo"
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

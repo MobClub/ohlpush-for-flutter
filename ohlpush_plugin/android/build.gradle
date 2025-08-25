@@ -20,18 +20,18 @@ rootProject.allprojects {
 }
 
 apply plugin: 'com.android.library'
-def mobCompileSdkVersion = 31
+def ohlCompileSdkVersion = 31
 try {
-    mobCompileSdkVersion = flutter.compileSdkVersion
+    ohlCompileSdkVersion = flutter.compileSdkVersion
     if (rootProject.hasProperty("ohl-compileSdkVersion")) {
-        mobCompileSdkVersion = Integer.parseInt(rootProject.getProperty('ohl-compileSdkVersion'))
+        ohlCompileSdkVersion = Integer.parseInt(rootProject.getProperty('ohl-compileSdkVersion'))
     }
 } catch (Throwable throwable) {
 
 }
 
 android {
-    compileSdkVersion mobCompileSdkVersion
+    compileSdkVersion ohlCompileSdkVersion
     if (project.android.hasProperty("namespace")) {
         namespace 'com.ohaola.sdk.flutter.ohlpush'
     }
