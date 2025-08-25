@@ -112,6 +112,7 @@ FlySDK {
             HONOR {
                 appId '220949336'
             }
+            AMAZON{}
         }
     }
 }
