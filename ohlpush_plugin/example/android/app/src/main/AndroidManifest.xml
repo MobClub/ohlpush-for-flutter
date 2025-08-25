@@ -2,7 +2,6 @@
     package="com.ohaola.sdk.flutter.ohlpush_plugin_example">
    <application
         android:label="ohlpush_plugin_example"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

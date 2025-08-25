@@ -22,12 +22,13 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'cn.fly.sdk'
+apply plugin: 'com.huawei.agconnect'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -35,25 +36,85 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.ohaola.sdk.flutter.ohlpush_plugin_example"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        applicationId "com.ohaola.sdk.push.demo"
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('demokey.keystore')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            zipAlignEnabled false
+            minifyEnabled false// 是否混淆
+            shrinkResources false// 是否去除无效的资源文件
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
     }
 }
 
 flutter {
     source '../..'
+}
+
+FlySDK {
+    appKey "11d90554ab605e"
+    appSecret "0f9c4a78d4f1aad67180b3b421dc4622"
+
+    OHLPush {
+        debugLevel 4
+        pro true
+        devInfo {
+            XIAOMI {
+                appId "2882303761518360245"
+                appKey "5501836067245"
+            }
+
+            HUAWEI {
+                appId "101595257"
+                version "6.7.0.300"
+            }
+
+            MEIZU {
+                appId "127372"
+                appKey "3fc6d1acc7ea4f90a0304967ee3a74ae"
+            }
+
+            FCM {
+                //设置默认推送通知显示图标
+                version "23.0.7"
+            }
+
+            OPPO {
+                version '3.5.3'
+                appKey "6303014506164557acc69df6ef14300b"
+                appSecret "c850609d8a0f492f8b9eeca1189aaec2"
+            }
+
+            VIVO {
+                appId "18568"
+                appKey "9b01729c-6140-4ad3-ac79-4c4543e12130"
+            }
+            HONOR {
+                appId '220949336'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'lib', excludes: [])
 }

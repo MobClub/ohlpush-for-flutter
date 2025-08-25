@@ -1,18 +1,27 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
     repositories {
+        maven {
+            url "https://mvn.zztfly.com/android"
+        }
+        maven { url 'https://developer.huawei.com/repo/' }
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'cn.fly.sdk:FlySDK:+'
+        classpath 'com.google.gms:google-services:4.3.3' // google-services plugin
+        classpath 'com.huawei.agconnect:agcp:1.2.0.300'
     }
 }
 
 allprojects {
     repositories {
+        maven {
+            url "https://mvn.zztfly.com/android"
+        }
+        maven { url 'https://developer.huawei.com/repo/' }
         google()
         mavenCentral()
     }
