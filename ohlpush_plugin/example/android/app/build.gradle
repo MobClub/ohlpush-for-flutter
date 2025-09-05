@@ -85,13 +85,13 @@ FlySDK {
             }
 
             HUAWEI {
-                appId "101595257"
-                version "6.7.0.300"
+                appId "115016075"
+                version "6.13.0.300"
             }
 
             MEIZU {
-                appId "127372"
-                appKey "3fc6d1acc7ea4f90a0304967ee3a74ae"
+                appId "155987"
+                appKey "9e7a2624bf4b48519312a6db6dbeecbc"
             }
 
             FCM {
@@ -101,8 +101,8 @@ FlySDK {
 
             OPPO {
                 version '3.5.3'
-                appKey "6303014506164557acc69df6ef14300b"
-                appSecret "c850609d8a0f492f8b9eeca1189aaec2"
+                appKey "06bcbe07cde84b3391d5f7d59eb894ad"
+                appSecret "4085fd5d0fab4fb390fcae63600cea32"
             }
 
             VIVO {
@@ -110,7 +110,7 @@ FlySDK {
                 appKey "9b01729c-6140-4ad3-ac79-4c4543e12130"
             }
             HONOR {
-                appId '220949336'
+                appId '104517139'
             }
             AMAZON{}
         }
