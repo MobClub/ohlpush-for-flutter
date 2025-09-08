@@ -107,6 +107,18 @@ public class PlayloadDelegate {
 			//处理其他自定义数据的业务逻辑，例如打开网页：通过自定义的key来获取对应的数据
 			if (map.containsKey(MOB_PUSH_DEMO_URL)) {
 				openUrl(context, map);
+			} else if (map.containsKey("iu")) {
+				String intentUri = (String) map.get("iu");
+				if (TextUtils.isEmpty(intentUri)) {
+					return;
+				}
+				try {
+					Intent intent = Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME);
+					intent.setPackage(context.getPackageName());
+					context.startActivity(intent);
+				} catch (Throwable e) {
+					throw new RuntimeException(e);
+				}
 			} else if (map.containsKey(MOB_PUSH_NORMAL_SCHEME_PLAYLOAD_KEY)) {
 				System.out.println(">>>>>>>>>>scheme Activity with playload data: " + MOB_PUSH_NORMAL_SCHEME_PLAYLOAD_KEY + ", value: " + map.get(MOB_PUSH_NORMAL_SCHEME_PLAYLOAD_KEY));
 			} else {
@@ -129,7 +141,11 @@ public class PlayloadDelegate {
 		try {
 			OHLPushNotifyMessage notifyMessage = (OHLPushNotifyMessage) bundle.getSerializable(MOB_PUSH_NORMAL_PLAYLOAD_KEY);
 			if (notifyMessage != null) {
-				hashMap = notifyMessage.getExtrasMap();
+				if (notifyMessage.isClickFromButton()){
+					hashMap = notifyMessage.getClickButton().getExtrasMap();
+				}else {
+					hashMap = notifyMessage.getExtrasMap();
+				}
 			}
 		} catch (Throwable throwable) {
 			Log.e("MobPush", throwable.getMessage());

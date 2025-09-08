@@ -34,7 +34,10 @@
            android:name=".LinkOneActivity"
            android:launchMode="singleTask">
            <intent-filter>
+               <category android:name="android.intent.category.BROWSABLE" />
+
                <action android:name="android.intent.action.VIEW" />
+
                <category android:name="android.intent.category.DEFAULT" />
                <data
                    android:host="com.ohaola.sdk.linkone"
@@ -47,7 +50,10 @@
            android:name=".LinkTwoActivity"
            android:launchMode="singleTask">
            <intent-filter>
+               <category android:name="android.intent.category.BROWSABLE" />
+
                <action android:name="android.intent.action.VIEW" />
+
                <category android:name="android.intent.category.DEFAULT" />
                <data
                    android:host="com.ohaola.sdk.linktwo"

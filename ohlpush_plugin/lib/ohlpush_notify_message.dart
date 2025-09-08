@@ -15,7 +15,7 @@ class OHLPushNotifyMessage {
 	bool? shake;
 	bool? light;
 	String? title;
-	String content;
+	String? content;
 	int? timestamp;
 
 	OHLPushNotifyMessage({this.title, required this.content, this.timestamp, this.subTitle, this.sound, this.badge, this.styleContent, required this.messageId, this.inboxStyleContent, this.style, this.channel, this.extrasMap, this.voice, this.shake, this.light});
