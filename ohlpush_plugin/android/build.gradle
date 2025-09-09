@@ -33,7 +33,7 @@ try {
 android {
     compileSdkVersion ohlCompileSdkVersion
     if (project.android.hasProperty("namespace")) {
-        namespace 'com.ohaola.sdk.flutter.ohlpush'
+        namespace 'com.ohaola.sdk.flutter.ohlpush_plugin'
     }
     lintOptions {
         disable 'InvalidPackage'
