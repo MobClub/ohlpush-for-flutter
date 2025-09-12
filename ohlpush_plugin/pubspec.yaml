@@ -30,6 +30,8 @@ flutter:
       android:
         package: com.ohaola.sdk.flutter.ohlpush_plugin
         pluginClass: OhlpushPlugin
+      ios:
+        pluginClass: OhlpushPlugin
 
 false_secrets:
   - example/android/app/google-services.json
