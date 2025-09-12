@@ -23,7 +23,9 @@ class _OtherApiPageState extends State<OtherApiPage> {
     'getTags',
     'deleteTags',
     'cleanTags',
-    'bindPhoneNum'
+    'bindPhoneNum',
+    'setUserLanguage',
+    'setDeviceTokenByUser'
   ];
   static List<String> otherAndOnlyAPIs = [
     'setSilenceTime',
@@ -41,12 +43,10 @@ class _OtherApiPageState extends State<OtherApiPage> {
   ].map((f) => f + '\n(仅iOS可用)').toList();
   static List<String> addApis =[
     'getDeviceToken',
-    'setDeviceTokenByUser',
     'checkTcpStatus',
     'startNotificationMonitor',
     'stopNotificationMonitor',
-    'isNotificationsEnabled',
-    'setUserLanguage'
+    'isNotificationsEnabled'
   ].map((f) => f + '\n(仅安卓可用)').toList();
   List<String> otherAllAPIs =
       otherPublicAPIs + otherAndOnlyAPIs + otheriOSOnlyAPIs + addApis;
@@ -499,27 +499,37 @@ class _OtherApiPageState extends State<OtherApiPage> {
         _bindPhoneNum();
         break;
       case 11:
-        if (!Platform.isAndroid) {
-          _showWarningDialog(true);
-          return;
-        }
-        await OhlpushPlugin.setSilenceTime(20, 0, 8, 0);
+        await OhlpushPlugin.setUserLanguage("en");
         break;
       case 12:
-        if (!Platform.isAndroid) {
-          _showWarningDialog(true);
-          return;
+        if (Platform.isIOS) {
+          // await OhlpushPlugin.registerApp("apns", "deviceToken");
+        } else {
+          await OhlpushPlugin.setDeviceTokenByUser("huawei", "huaweitesttoken");
         }
-        await OhlpushPlugin.removeLocalNotification(0);
         break;
       case 13:
         if (!Platform.isAndroid) {
           _showWarningDialog(true);
           return;
         }
-        await OhlpushPlugin.clearLocalNotifications();
+        await OhlpushPlugin.setSilenceTime(20, 0, 8, 0);
         break;
       case 14:
+        if (!Platform.isAndroid) {
+          _showWarningDialog(true);
+          return;
+        }
+        await OhlpushPlugin.removeLocalNotification(0);
+        break;
+      case 15:
+        if (!Platform.isAndroid) {
+          _showWarningDialog(true);
+          return;
+        }
+        await OhlpushPlugin.clearLocalNotifications();
+        break;
+      case 16:
         if (!Platform.isAndroid) {
           _showWarningDialog(true);
           return;
@@ -529,14 +539,14 @@ class _OtherApiPageState extends State<OtherApiPage> {
         });
         await OhlpushPlugin.setAppForegroundHiddenNotification(hiddenNotify);
         break;
-      case 15:
+      case 17:
         if (!Platform.isAndroid) {
           _showWarningDialog(true);
           return;
         }
         await OhlpushPlugin.setNotifyIcon("ic_launcher");
         break;
-      case 16:
+      case 18:
         if (!Platform.isAndroid) {
           _showWarningDialog(true);
           return;
@@ -547,24 +557,24 @@ class _OtherApiPageState extends State<OtherApiPage> {
         await OhlpushPlugin.setClickNotificationToLaunchMainActivity(
             launchMain);
         break;
-      case 17:
+      case 19:
         if (!Platform.isAndroid) {
           _showWarningDialog(true);
           return;
         }
         await OhlpushPlugin.setShowBadge(true);
         break;
-      case 18:
+      case 20:
         _setBadge();
         break;
-      case 19:
+      case 21:
         if (!Platform.isIOS) {
           _showWarningDialog(false);
           return;
         }
         OhlpushPlugin.clearBadge();
         break;
-      case 20:
+      case 22:
         if (!Platform.isIOS) {
           _showWarningDialog(false);
           return;
@@ -572,29 +582,23 @@ class _OtherApiPageState extends State<OtherApiPage> {
         _setAPNsShowForegroundType();
         break;
 
-      case 21:
+      case 23:
         String token = await OhlpushPlugin.getDeviceToken();
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>> getDeviceToken -> token: $token");
         break;
-      case 22:
-        await OhlpushPlugin.setDeviceTokenByUser("huawei", "huaweitesttoken");
-        break;
-      case 23:
+      case 24:
         bool status = await OhlpushPlugin.checkTcpStatus();
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>> checkTcpStatus -> status: $status");
         break;
-      case 24:
+      case 25:
         await OhlpushPlugin.startNotificationMonitor();
         break;
-      case 25:
+      case 26:
         await OhlpushPlugin.stopNotificationMonitor();
         break;
-      case 26:
+      case 27:
         bool isopen = await OhlpushPlugin.isNotificationsEnabled();
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>> isNotificationsEnabled -> $isopen");
-        break;
-      case 27:
-        await OhlpushPlugin.setUserLanguage("en");
         break;
       default:
         break;

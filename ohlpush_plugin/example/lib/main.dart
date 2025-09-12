@@ -47,9 +47,7 @@ class _MainAppState extends State<MainApp> {
           value.toString());
     });
     if (Platform.isIOS) {
-      //设置地区：regionId 默认0（国内），1:海外
-      OhlpushPlugin.setRegionId(0);
-      OhlpushPlugin.registerApp("3276d3e413040", "4280a3a6df667cfce37528dec03fd9c3");
+      OhlpushPlugin.registerApp("11d90554ab605e", "0f9c4a78d4f1aad67180b3b421dc4622");
     }
 
     initPlatformState();

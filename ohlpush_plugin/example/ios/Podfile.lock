@@ -1,0 +1,36 @@
+PODS:
+  - Flutter (1.0.0)
+  - mob_ohlpush (1.0.3):
+    - mob_ohlpush/OHLPush (= 1.0.3)
+    - OHLFoundation
+  - mob_ohlpush/OHLPush (1.0.3):
+    - OHLFoundation
+  - OHLFoundation (20250820)
+  - ohlpush_plugin (1.3.0):
+    - Flutter
+    - mob_ohlpush
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ohlpush_plugin (from `.symlinks/plugins/ohlpush_plugin/ios`)
+
+SPEC REPOS:
+  trunk:
+    - mob_ohlpush
+    - OHLFoundation
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ohlpush_plugin:
+    :path: ".symlinks/plugins/ohlpush_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  mob_ohlpush: d1cc18e4957bcae60693f04b67345f11e788463e
+  OHLFoundation: fede86da7b8f213c642ae568c98eb16eab696898
+  ohlpush_plugin: 60b825f0aedd544b7e63f261fe22ac043b1f5f72
+
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+
+COCOAPODS: 1.16.2
