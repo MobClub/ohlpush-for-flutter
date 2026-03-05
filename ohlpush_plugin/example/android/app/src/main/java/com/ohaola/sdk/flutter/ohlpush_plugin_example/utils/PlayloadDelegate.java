@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
-import com.mob.tools.utils.Hashon;
+import com.ohaola.sdk.tool.wrapper.tools.utils.Hashon;
 import com.ohaola.sdk.flutter.ohlpush_plugin_example.web.WebViewPage;
 import com.ohaola.sdk.push.OHLPushNotifyMessage;
 

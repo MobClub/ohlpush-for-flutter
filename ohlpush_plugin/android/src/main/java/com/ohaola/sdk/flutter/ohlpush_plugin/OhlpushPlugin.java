@@ -9,9 +9,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.mob.MobSDK;
-import com.mob.tools.MobLog;
-import com.mob.tools.utils.Hashon;
+import com.ohaola.sdk.tool.wrapper.MobSDK;
+import com.ohaola.sdk.tool.wrapper.tools.MobLog;
+import com.ohaola.sdk.tool.wrapper.tools.utils.Hashon;
 import com.ohaola.commons.OHLPUSH;
 import com.ohaola.sdk.flutter.ohlpush_plugin.impl.Const;
 import com.ohaola.sdk.flutter.ohlpush_plugin.impl.MethodCallHandlerImpl;
@@ -65,7 +65,6 @@ public class OhlpushPlugin implements FlutterPlugin {
 				}
 			}.start();
 
-			// 标准: MethodChannel 统一命名：com.mob.项目xx.功能
 			methodChannel = new MethodChannel(binding.getBinaryMessenger(), "com.ohaola.sdk.push.methodChannel");
 			final MethodCallHandlerImpl methodCallHandlerImpl = new MethodCallHandlerImpl();
 			methodCallHandler = methodCallHandlerImpl;

@@ -22,8 +22,8 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.mob.tools.FakeActivity;
-import com.mob.tools.utils.ResHelper;
+import com.ohaola.sdk.tool.wrapper.tools.FakeActivity;
+import com.ohaola.sdk.tool.wrapper.tools.utils.ResHelper;
 import com.ohaola.sdk.flutter.ohlpush_plugin_example.utils.SizeHelper;
 
 /**
