@@ -2,7 +2,7 @@ package com.ohaola.sdk.flutter.ohlpush_plugin_example.utils;
 
 import android.content.Context;
 
-import com.mob.tools.utils.ResHelper;
+import com.ohaola.sdk.tool.wrapper.tools.utils.ResHelper;
 
 
 public class SizeHelper {
