@@ -2,8 +2,8 @@ package com.ohaola.sdk.flutter.ohlpush_plugin.impl.req;
 
 import android.text.TextUtils;
 
-import com.mob.MobCommunicator;
-import com.mob.MobSDK;
+import com.ohaola.sdk.tool.wrapper.MobCommunicator;
+import com.ohaola.sdk.tool.wrapper.MobSDK;
 import com.ohaola.sdk.push.OHLPush;
 import com.ohaola.sdk.push.OHLPushCallback;
 

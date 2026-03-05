@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.mob.tools.MobLog;
-import com.mob.tools.utils.Hashon;
-import com.mob.tools.utils.UIHandler;
+import com.ohaola.sdk.tool.wrapper.tools.MobLog;
+import com.ohaola.sdk.tool.wrapper.tools.utils.Hashon;
+import com.ohaola.sdk.tool.wrapper.tools.utils.UIHandler;
 import com.ohaola.sdk.push.OHLPushCustomMessage;
 import com.ohaola.sdk.push.OHLPushInAppMessage;
 import com.ohaola.sdk.push.OHLPushNotifyMessage;
