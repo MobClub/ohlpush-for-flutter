@@ -3,8 +3,11 @@
 #import <OHLPush/OHLPush.h>
 #import <OHLPush/OHLPush+Test.h>
 #import <OHLPush/OHLPushNotificationConfiguration.h>
-#import <MOBFoundation/MOBFoundation.h>
-#import <MOBFoundation/MobSDK+Privacy.h>
+#import <OHLPushCSDK/OHLPushC.h>
+#import <OHLPushCSDK/OHLPushCJson.h>
+#import <OHLPushCSDK/OHLPushCString.h>
+#import <OHLPushCSDK/OHLPushCDataService.h>
+#import <OHLPushCSDK/OHLPushCSDK+Privacy.h>
 
 static NSString *const EVENT_CHANNEL = @"com.ohaola.sdk.push.reciever";
 static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
@@ -120,7 +123,7 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
         NSDictionary *arguments = (NSDictionary *)call.arguments;
         if (arguments && arguments[@"localNotification"]) {
             NSString *localStr = arguments[@"localNotification"];
-            NSDictionary *eventParams = [MOBFJson objectFromJSONString:localStr];
+            NSDictionary *eventParams = [OHLPushCJson objectFromJSONString:localStr];
             
             NSString *identifier = nil;
             
@@ -252,20 +255,16 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
     } else if ([@"setCustomNotification" isEqualToString:call.method]) {
         OHLPushNotificationConfiguration *config = [[OHLPushNotificationConfiguration alloc] init];
         config.types = OHLPushAuthorizationOptionsSound | OHLPushAuthorizationOptionsBadge | OHLPushAuthorizationOptionsAlert;
-        [[MOBFDataService sharedInstance] setCacheData:config
+        [[OHLPushCDataService sharedInstance] setCacheData:config
                                                  forKey:@"OHLPushNotificationConfiguration"
                                                  domain:@"OHLPUSH_FLUTTER_PLUGIN"];
         [OHLPush setupNotification:config];
     } else if ([@"updatePrivacyPermissionStatus" isEqualToString:call.method]) {
         NSDictionary *arguments = (NSDictionary *)call.arguments;
         NSInteger status = [arguments[@"status"] integerValue];
-        [MobSDK uploadPrivacyPermissionStatus:status onResult:^(BOOL success) {
+        [OHLPushC agreePrivacy:status onResult:^(BOOL success) {
             result(@(success));
         }];
-    } else if ([@"setRegionId" isEqualToString:call.method]) {
-        NSDictionary *arguments = (NSDictionary *)call.arguments;
-        int regionId = [arguments[@"regionId"] intValue];
-        [OHLPush setRegionID:regionId];
     } else if ([@"registerApp" isEqualToString:call.method]) {
         // 配置国外环境
         [OHLPush setDataNode:Singapore];
@@ -273,7 +272,7 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
         NSDictionary *arguments = (NSDictionary *)call.arguments;
         NSString *appKey = arguments[@"appKey"];
         NSString *appSecret = arguments[@"appSecret"];
-        [MobSDK registerAppKey:appKey appSecret:appSecret];
+        [OHLPushC initKey:appKey secret:appSecret];
     } else if ([@"setUserLanguage" isEqualToString:call.method]) {
         NSDictionary *arguments = (NSDictionary *)call.arguments;
         NSString *userLang = arguments[@"language"];
@@ -285,7 +284,7 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
         NSString *channel = arguments[@"channel"];
         NSString *token = arguments[@"token"];
         if (channel && [channel.lowercaseString isEqualToString:@"apns"]) {
-            NSData *data = [MOBFString dataByHexString:token];
+            NSData *data = [OHLPushCString dataByHexString:token];
             [OHLPush registerDeviceToken:data];
         }
     } else {
@@ -314,7 +313,7 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
                                                  name:OHLPushDidReceiveMessageNotification
                                                object:nil];
     
-    OHLPushNotificationConfiguration *config = [[MOBFDataService sharedInstance] cacheDataForKey:@"OHLPushNotificationConfiguration" domain:@"OHLPUSH_FLUTTER_PLUGIN"];
+    OHLPushNotificationConfiguration *config = [[OHLPushCDataService sharedInstance] cacheDataForKey:@"OHLPushNotificationConfiguration" domain:@"OHLPUSH_FLUTTER_PLUGIN"];
     if (config && [config isKindOfClass:OHLPushNotificationConfiguration.class]) {
         [OHLPush setupNotification:config];
     }
@@ -403,7 +402,7 @@ static NSString *const METHOD_CHANNEL = @"com.ohaola.sdk.push.methodChannel";
             [resultDict setObject:reslut forKey:@"result"];
         }
         // 回调结果
-        NSString *resultDictStr = [MOBFJson jsonStringFromObject:resultDict];
+        NSString *resultDictStr = [OHLPushCJson jsonStringFromObject:resultDict];
         
         if (self.callBack) {
             self.callBack(resultDictStr);

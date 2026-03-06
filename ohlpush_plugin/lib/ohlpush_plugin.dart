@@ -204,13 +204,6 @@ class OhlpushPlugin {
   }
 
   /*
-	 *设置地区：regionId 默认0（国内），1:海外  (仅 iOS).
-	 */
-  static Future<void> setRegionId(int regionId) async {
-    _channel.invokeMethod('setRegionId', {'regionId': regionId});
-  }
-
-  /*
 	 *注册appkey和appsecret
 	 * (仅 iOS).
 	 */
